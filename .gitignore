@@ -1,15 +1,25 @@
+# Node.js & Bundler
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+*.jsbundle
 
-#react-native-config
-ios/tmp.xcconfig
-
-
-# OSX
-#
+# macOS
 .DS_Store
 
-# Xcode
-#
-build/
+# Xcode / iOS
+ios/build/
+ios/Pods/
+ios/DerivedData/
+*.xcworkspace
+*.hmap
+*.ipa
+*.xcuserstate
+*.xcuserdata/
+**/.xcode.env.local
+
+# Xcode - User specific
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -18,21 +28,15 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
 *.xccheckout
 *.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-**/.xcode.env.local
 
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
-local.properties
+# Android / IntelliJ
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+.idea/
 *.iml
 *.hprof
 .cxx/
@@ -40,65 +44,30 @@ local.properties
 !debug.keystore
 .kotlin/
 
-# node.js
-#
-node_modules/
-npm-debug.log
-yarn-error.log
+# react-native-config
+ios/tmp.xcconfig
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
+# Ruby / CocoaPods
+/vendor/bundle/
 
+# Fastlane
 **/fastlane/report.xml
 **/fastlane/Preview.html
 **/fastlane/screenshots
 **/fastlane/test_output
 
-# Bundle artifact
-*.jsbundle
-
-# Ruby / CocoaPods
-**/Pods/
-/vendor/bundle/
-
-# Temporary files created by Metro to check the health of the file watcher
+# Metro
 .metro-health-check*
- 
-# testing
+
+# Testing
 /coverage
 
-
-# Node
-node_modules/
-npm-debug.log
-yarn-debug.log
-yarn-error.log
-
-# macOS
-.DS_Store
-
-# Xcode (iOS)
-ios/build/
-ios/Pods/
-ios/DerivedData/
-*.xcworkspace
-*.xcuserstate
-*.xcuserdata/
-
-# Android
-android/.gradle/
-android/app/build/
-android/build/
-android/local.properties
-*.iml
-
-# Expo (사용하는 경우)
+# Expo
 .expo/
 .expo-shared/
 
 # Logs
 *.log
+
+# Google Services
+android/app/google-services.json
