@@ -79,7 +79,7 @@ const RftList = ({navigation, route: {params}}: rftListProps) => {
                 item.rft_upload_audio_file.map(file => {
                   //   console.log('upload file : ', file);
                   return (
-                    <Col>
+                    <Col key={file.rft_audio_seq_num}>
                       <RftBox>
                         <RftThumbnail source={{uri: item.book_img_path}} />
                         <TextInfoBox>
