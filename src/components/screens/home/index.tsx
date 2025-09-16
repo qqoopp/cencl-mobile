@@ -84,7 +84,7 @@ const Home = () => {
             {scheduleStatus[selectedDay]?.attend === '출석' && (
               <TouchableOpacity onPress={() => onPressClassCard('Reading')}>
                 <View style={{position: 'absolute', top: 0, left: -10, zIndex: 10}}>
-                  <VIcon type="Ionicons" name="ios-checkmark-circle-outline" size={25} color={color.main} />
+                  <VIcon type="Ionicons" name="checkmark-circle-outline" size={25} color={color.main} />
                 </View>
                 <ClassCard type="class" title="[수업] Reading" />
               </TouchableOpacity>
@@ -92,7 +92,7 @@ const Home = () => {
             {scheduleStatus[selectedDay]?.attend_s === '출석' && (
               <TouchableOpacity onPress={() => onPressClassCard('Speaking')}>
                 <View style={{position: 'absolute', top: 0, left: -10, zIndex: 10}}>
-                  <VIcon type="Ionicons" name="ios-checkmark-circle-outline" size={25} color={color.main} />
+                  <VIcon type="Ionicons" name="checkmark-circle-outline" size={25} color={color.main} />
                 </View>
                 <ClassCard type="class" title="[수업] Speaking" />
               </TouchableOpacity>
@@ -100,7 +100,7 @@ const Home = () => {
             {scheduleStatus[selectedDay]?.attend_w === '출석' && (
               <TouchableOpacity onPress={() => onPressClassCard('Writing')}>
                 <View style={{position: 'absolute', top: 0, left: -10, zIndex: 10}}>
-                  <VIcon type="Ionicons" name="ios-checkmark-circle-outline" size={25} color={color.main} />
+                  <VIcon type="Ionicons" name="checkmark-circle-outline" size={25} color={color.main} />
                 </View>
                 <ClassCard type="class" title="[수업] Writing" />
               </TouchableOpacity>
@@ -108,7 +108,7 @@ const Home = () => {
             {/* {scheduleStatus[selectedDay]?.attend_v === '출석' && (
               <TouchableOpacity disabled>
                 <View style={{position: 'absolute', top: 0, left: -10, zIndex: 10}}>
-                  <VIcon type="Ionicons" name="ios-checkmark-circle-outline" size={25} color={color.main} />
+                  <VIcon type="Ionicons" name="checkmark-circle-outline" size={25} color={color.main} />
                 </View>
                 <ClassCard type="class" title="[수업] Voca" />
               </TouchableOpacity>
@@ -118,7 +118,7 @@ const Home = () => {
                 <View style={{position: 'absolute', top: 0, left: -10, zIndex: 10}}>
                   <VIcon
                     type="Ionicons"
-                    name="ios-checkmark-circle-outline"
+                    name="checkmark-circle-outline"
                     size={25}
                     color={scheduleStatus[selectedDay]?.status === '완료' ? color.main : color.dark_gray}
                   />
@@ -131,7 +131,7 @@ const Home = () => {
                 <View style={{position: 'absolute', top: 0, left: -10, zIndex: 10}}>
                   <VIcon
                     type="Ionicons"
-                    name="ios-checkmark-circle-outline"
+                    name="checkmark-circle-outline"
                     size={25}
                     color={scheduleStatus[selectedDay]?.rft_seq_num !== '' ? color.main : color.dark_gray}
                   />

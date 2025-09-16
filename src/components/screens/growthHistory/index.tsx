@@ -167,9 +167,9 @@ const SoundContents = ({
 
       <TouchableOpacity onPress={onPressContent} style={{marginHorizontal: 10}}>
         {isSelectedTrack && isPlaying ? (
-          <VIcon type="Ionicons" name="ios-pause" color={color.black} size={18} />
+          <VIcon type="Ionicons" name="pause" color={color.black} size={18} />
         ) : (
-          <VIcon type="Ionicons" name="ios-play-sharp" color={color.black} size={18} />
+          <VIcon type="Ionicons" name="play-sharp" color={color.black} size={18} />
         )}
       </TouchableOpacity>
       <Slider

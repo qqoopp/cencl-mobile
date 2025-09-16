@@ -18,7 +18,7 @@ const CompleteSignUp = () => {
         justifyContent: 'center',
         paddingBottom: metrics.notchBottom,
       }}>
-      <Icon name="ios-phone-portrait-outline" size={60} color={color.main} />
+      <Icon name="phone-portrait-outline" size={60} color={color.main} />
       <NotoText fw="Bold" fs={ftSizes.l} mt={32} mb={23}>
         가입 신청 완료!
       </NotoText>

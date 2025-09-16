@@ -96,7 +96,7 @@ function checkSchedule(reading: '0' | '1', speaking: '0' | '1', writing: '0' | '
 
 const scheduleIcon = {
   Reading: <VIcon type="Ionicons" name="book" color="#6EC3FF" size={calcResponsive(30)} />,
-  Speaking: <VIcon type="Ionicons" name="ios-chatbubbles" color="#6EC3FF" size={calcResponsive(30)} />,
+  Speaking: <VIcon type="Ionicons" name="chatbubbles" color="#6EC3FF" size={calcResponsive(30)} />,
   Writing: <VIcon type="FontAwesome" name="pencil" color="#6EC3FF" size={calcResponsive(30)} />,
   Voca: <VIcon type="MaterialCommunityIcons" name="alphabet-latin" color="#6EC3FF" size={calcResponsive(30)} />,
 };
