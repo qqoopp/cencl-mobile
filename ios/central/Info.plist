@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>CFBundleDevelopmentRegion</key>
+		<string>en</string>
+		<key>CFBundleDisplayName</key>
+		<string>센트럴1리딩클럽</string>
+		<key>CFBundleExecutable</key>
+		<string>$(EXECUTABLE_NAME)</string>
+		<key>CFBundleIdentifier</key>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+		<key>CFBundleInfoDictionaryVersion</key>
+		<string>6.0</string>
+		<key>CFBundleName</key>
+		<string>$(PRODUCT_NAME)</string>
+		<key>CFBundlePackageType</key>
+		<string>APPL</string>
+		<key>CFBundleShortVersionString</key>
+		<string>$(IOS_VERSION_NAME)</string>
+		<key>CFBundleSignature</key>
+		<string>????</string>
+		<key>CFBundleVersion</key>
+		<string>$(CURRENT_PROJECT_VERSION)</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>kftc-bankpay</string>
+			<string>ispmobile</string>
+			<string>shinhan-sr-ansimclick</string>
+			<string>smshinhanansimclick</string>
+			<string>hdcardappcardansimclick</string>
+			<string>smhyundaiansimclick</string>
+			<string>mpocket.online.ansimclick</string>
+			<string>scardcertiapp</string>
+			<string>cloudpay</string>
+			<string>nhappcardansimclick</string>
+			<string>nonghyupcardansimclick</string>
+			<string>kb-acp</string>
+			<string>lotteappcard</string>
+			<string>lottesmartpay</string>
+			<string>citispay</string>
+			<string>shinsegaeeasypayment</string>
+			<string>tswansimclick</string>
+			<string>nhallonepayansimclick</string>
+			<string>citimobileapp</string>
+			<string>payco</string>
+			<string>kakaotalk</string>
+			<string>hanaskcardmobileportal</string>
+			<string>lpayapp</string>
+			<string>wooripay</string>
+		</array>
+		<key>LSRequiresIPhoneOS</key>
+		<true />
+		<key>NSAppTransportSecurity</key>
+		<dict>
+			<!-- Do not change NSAllowsArbitraryLoads to true, or you will risk app rejection! -->
+			<key>NSAllowsArbitraryLoads</key>
+			<false />
+			<key>NSAllowsLocalNetworking</key>
+			<true />
+			<key>NSExceptionDomains</key>
+			<dict>
+				<key>www.cenman.co.kr</key>
+				<dict>
+					<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+					<true />
+				</dict>
+			</dict>
+		</dict>
+		<key>NSCameraUsageDescription</key>
+		<string>Need camera access for uploading Images</string>
+		<key>NSLocationUsageDescription</key>
+		<string>Need location access for updating nearby friends</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>This app will use your location to show cool stuffs near you.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>Need microphone access for uploading videos</string>
+		<key>NSSpeechRecognitionUsageDescription</key>
+		<string>Need SpeechRecognition access for uploading videos</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Need Library access for uploading Images</string>
+		<key>UIAppFonts</key>
+		<array>
+			<string>fonts/NotoSansKR-Black.otf</string>
+			<string>fonts/NotoSansKR-Bold.otf</string>
+			<string>fonts/NotoSansKR-Light.otf</string>
+			<string>fonts/DancingScript-Bold.ttf</string>
+			<string>fonts/NotoSansKR-Medium.otf</string>
+			<string>fonts/NotoSansKR-Regular.otf</string>
+			<string>fonts/NotoSansKR-Thin.otf</string>
+			<string>fonts/JalnanOTF.otf</string>
+			<string>AntDesign.ttf</string>
+			<string>Entypo.ttf</string>
+			<string>EvilIcons.ttf</string>
+			<string>Feather.ttf</string>
+			<string>FontAwesome.ttf</string>
+			<string>FontAwesome5_Brands.ttf</string>
+			<string>FontAwesome5_Regular.ttf</string>
+			<string>FontAwesome5_Solid.ttf</string>
+			<string>Foundation.ttf</string>
+			<string>Ionicons.ttf</string>
+			<string>MaterialCommunityIcons.ttf</string>
+			<string>MaterialIcons.ttf</string>
+			<string>Octicons.ttf</string>
+			<string>SimpleLineIcons.ttf</string>
+			<string>Zocial.ttf</string>
+			<string>Fontisto.ttf</string>
+		</array>
+		<key>UILaunchStoryboardName</key>
+		<string>LaunchScreen</string>
+		<key>UIRequiredDeviceCapabilities</key>
+		<array>
+			<string>arm64</string>
+		</array>
+		<key>UIRequiresFullScreen</key>
+		<true />
+		<key>UIStatusBarStyle</key>
+		<string></string>
+		<key>UISupportedInterfaceOrientations</key>
+		<array>
+			<string>UIInterfaceOrientationPortrait</string>
+		</array>
+		<key>UIViewControllerBasedStatusBarAppearance</key>
+		<false />
+	</dict>
+</plist>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "66302423240",
+    "firebase_url": "https://bizcencledu-779d8.firebaseio.com",
+    "project_id": "bizcencledu-779d8",
+    "storage_bucket": "bizcencledu-779d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66302423240:android:5f1f4409d8d5a3818275fd",
+        "android_client_info": {
+          "package_name": "com.cenman.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66302423240-d04ut8d34l9i0kkmeo8hsfth7hmmi1av.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjl3sMKf81YVUU_MWgb_A272Db9jUXQpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66302423240-d04ut8d34l9i0kkmeo8hsfth7hmmi1av.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "66302423240-4hd99qrl6tkaqik2raoj4gcsocum16a6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cenman.cenman.cenman"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
