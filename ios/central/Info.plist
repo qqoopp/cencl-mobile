@@ -60,6 +60,13 @@
 			<true />
 			<key>NSExceptionDomains</key>
 			<dict>
+				<key>cenman.s3.ap-northeast-2.amazonaws.com</key>
+				<dict>
+					<key>NSIncludesSubdomains</key>
+					<true/>
+					<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+					<true/>
+				</dict>
 				<key>www.cenman.co.kr</key>
 				<dict>
 					<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
