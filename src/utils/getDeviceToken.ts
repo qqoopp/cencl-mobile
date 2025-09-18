@@ -1,23 +1,8 @@
-import messaging from '@react-native-firebase/messaging';
-
+/**
+ * @deprecated This function is deprecated. All FCM token logic is now handled in the `useFcm` hook to prevent race conditions at startup. 
+ * Do not use this function.
+ */
 export const getDeviceToken = async (): Promise<string> => {
-  return requestUserPermission();
-};
-
-const requestUserPermission = async (): Promise<string> => {
-  const authStatus = await messaging().requestPermission({
-    providesAppNotificationSettings: true,
-  });
-  const enabled = authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-  if (enabled) {
-    return getToken();
-  } else {
-    return '';
-  }
-};
-
-const getToken = async (): Promise<string> => {
-  const fcmToken = await messaging().getToken();
-
-  return fcmToken;
+  console.warn('getDeviceToken is deprecated and should not be used.');
+  return '';
 };

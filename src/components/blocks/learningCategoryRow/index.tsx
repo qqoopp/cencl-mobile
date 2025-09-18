@@ -7,7 +7,6 @@ import {ScrollView} from 'react-native-gesture-handler';
 const CategoryBox = styled.View`
   flex-direction: row;
   padding: 0 10px;
-  z-index: -1;
 `;
 
 interface CategoryBtnProps extends StyledTheme {
