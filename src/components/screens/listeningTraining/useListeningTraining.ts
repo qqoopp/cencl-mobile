@@ -1,5 +1,6 @@
 import memberState from '@/states/memberState';
 import React, {useEffect, useState} from 'react';
+import {useAtomValue} from 'jotai';
 import {useSound} from '@/hooks/useSound';
 import SimpleToast from 'react-native-simple-toast';
 import {goBack} from '@/utils/rootNavigations';

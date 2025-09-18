@@ -14,6 +14,8 @@ import {
   srtestListAPI,
   vocaTestListAPI,
   writingListAPI,
+  rankAPI,
+  rankMonthListAPI,
 } from './url';
 import {getFormDataFromParams} from '@/utils/getFormDataFromParams';
 
@@ -120,4 +122,28 @@ export const replyFetch = ({mem_id, content_seq_num, file_div, reply}: replyFetc
     form.append('reply', reply);
   }
   return clientAxios.post(replyAPI, form);
+};
+
+interface getRankProps {
+  mem_id: string;
+  year: string;
+  month: string;
+  is_rank_all: string;
+  rank_type: string;
+  rank_div: string;
+  [key: string]: string;
+}
+
+export const getRankFetch = (params: getRankProps): Promise<AxiosResponse<ClientAxiosResponse<rank[]>>> => {
+  const form = getFormDataFromParams(params);
+  return clientAxios.post(rankAPI, form);
+};
+
+interface getRankMonthListProps {
+  mem_id: string;
+  [key: string]: string;
+}
+export const getRankMonthListFetch = (params: getRankMonthListProps): Promise<AxiosResponse<ClientAxiosResponse<rankMonthList[]>>> => {
+  const form = getFormDataFromParams(params);
+  return clientAxios.post(rankMonthListAPI, form);
 };

@@ -30,6 +30,10 @@ export const srtestListAPI = 'srtest/list.php';
 
 export const reportAPI = 'report/info.php';
 
+export const rankAPI = 'rank/get_rank_month.php';
+
+export const rankMonthListAPI = 'rank/get_rank_month_list.php';
+
 export const chatListAPI = 'communication/list.php';
 export const sendChatAPI = 'communication/send.php';
 

@@ -28,6 +28,9 @@ export const useParentsPage = (): Return => {
     if (info?.screen === '') {
       modal.changeType('webView');
       setUri(info.url);
+    } else if (info?.title === '랭킹 조회') {
+      modal.isVisible = true;
+      modal.changeType('rank');
     } else {
       navigate(info?.screen);
     }

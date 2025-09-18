@@ -208,11 +208,11 @@ const Info = ({
           </>
         )}
       </ScrollView>
-      {(testInfo.correct_amount === null || testInfo.correct_amount === '' || Number(testInfo.correct_amount) < totalWordCount) && (
-        <View style={styles.resultOkayBtnView}>
-          <RoundBoxBtn isLoading={distractors.length === 0} disabled={distractors.length === 0} onPress={onPressNextStep} title="시험 전 복습하기" />
-        </View>
-      )}
+      {/* {(testInfo.correct_amount === null || testInfo.correct_amount === '' || Number(testInfo.correct_amount) < totalWordCount) && ( */}
+      <View style={styles.resultOkayBtnView}>
+        <RoundBoxBtn isLoading={distractors.length === 0} disabled={distractors.length === 0} onPress={onPressNextStep} title="시험 전 복습하기" />
+      </View>
+      {/* )} */}
     </ScreenBg>
   );
 };

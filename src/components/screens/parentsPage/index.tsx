@@ -17,6 +17,7 @@ import {ConsultingButton, IconBox, InfoRowBtn, LeftClassBoard, styles} from './s
 import {useParentsPage} from './useParentsPage';
 import FullScreenWebView from '@/components/blocks/fullScreenWebView';
 import VIcon from '@/components/atoms/vIcon';
+import Rank from '@/components/modals/rank';
 
 const ParentsPage = () => {
   const {member, modal, uri, onPressRow, onPressLogout} = useParentsPage();
@@ -27,6 +28,7 @@ const ParentsPage = () => {
     {
       title: '자녀 관리',
       list: [
+        {title: '랭킹 조회', screen: 'rank', url: '', isHide: member.menu_buse_rank !== '사용'},
         {title: '학습 이력 조회', screen: 'learningHistory', isHide: false},
         {title: '읽기 능력 평가(SR테스트) 결과', screen: 'readingSkillResults', isHide: false},
         {title: '성적표', screen: 'report', isHide: false},
@@ -125,6 +127,14 @@ const ParentsPage = () => {
       </ScreenBg>
       <Modal visible={modal.isVisible} onRequestClose={modal.close}>
         {modal.type === 'webView' && <FullScreenWebView closeModal={modal.close} uri={uri} />}
+        {modal.type === 'rank' && (
+          <View style={{backgroundColor: '#00000099', flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <View style={{flex: 0.2}}></View>
+            {modal.type === 'rank' && <Rank closeMoal={modal.close} />}
+            <View style={{flex: 0.2}}></View>
+            {/* <Image style={{width: metrics.screenWidth, height: calcResponsive(metrics.screenHeight)}} resizeMode="contain" source={{uri: imgUri}} /> */}
+          </View>
+        )}
       </Modal>
     </>
     //   "https://www.cenman.co.kr/_utils/nicepay/payRequest_mobile_utf.php?mem_id=student22#"

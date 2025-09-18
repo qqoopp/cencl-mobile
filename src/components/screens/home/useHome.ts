@@ -5,6 +5,9 @@ import {navigate, replace} from '@/utils/rootNavigations';
 import {useIsFocused} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {useAtom, useAtomValue} from 'jotai';
+import {ModalReturn, useModal} from '@/hooks/useModal';
+import {Modal} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type category = '학습현황' | '수업일정';
 
@@ -19,6 +22,7 @@ interface Return {
   onPressArrow: (arrow: number) => void;
   onPressDay: (day: number) => void;
   onPressCategory: (category: category) => void;
+  handleHideToday: () => void;
 }
 
 export const useHome = (): Return => {
@@ -29,7 +33,16 @@ export const useHome = (): Return => {
   const [scheduleStatus, setScheduleStatus] = useState<(schedule | null)[]>(new Array(7).fill(null));
   const [selectedCategory, setSelectedCategory] = useState<category>('학습현황');
   const isFocused = useIsFocused();
+  const modal = useModal<'rank'>();
+  const [isModalVisible, setIsModalVisible] = useState(modal.isVisible);
+
   useEffect(() => {
+    if (modal.isVisible === false) {
+    }
+  }, [modal.isVisible]);
+
+  useEffect(() => {
+    checkHideModal();
     const d = new Date();
     const day = d.getDay(); //
 
@@ -44,6 +57,42 @@ export const useHome = (): Return => {
   useEffect(() => {
     getCalendar(weeks[0], weeks[6]);
   }, [weeks, isFocused]);
+
+  // 오늘 날짜를 확인하는 함수
+  const getTodayDate = () => {
+    const today = new Date();
+    return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  };
+
+  // "오늘 하루 보지 않기" 설정 확인
+  const checkHideModal = async () => {
+    const hideUntil = await AsyncStorage.getItem('hideModalUntil');
+    const todayDate = getTodayDate();
+    if (hideUntil === todayDate) {
+      setIsModalVisible(false);
+      modal.isVisible = false;
+      modal.changeType('');
+      modal.close;
+    } else {
+      modal.isVisible = true;
+      modal.changeType('rank');
+      setIsModalVisible(modal.isVisible);
+      handleHideToday();
+    }
+  };
+
+  // "오늘 하루 보지 않기" 버튼 클릭 처리
+  const handleHideToday = async () => {
+    if (member.menu_buse_rank === '사용') {
+      const todayDate = getTodayDate();
+      await AsyncStorage.setItem('hideModalUntil', todayDate);
+    }
+    // setIsModalVisible(false);
+  };
+
+  // useEffect(() => {
+  //   checkHideModal();
+  // }, [modal.isVisible]);
 
   const getCalendar = async (start_date: string, end_date: string) => {
     const {
@@ -83,6 +132,7 @@ export const useHome = (): Return => {
   const onPressCategory = (category: category) => setSelectedCategory(category);
 
   return {
+    modal,
     selectedDay,
     weeks,
     scheduleStatus,
@@ -93,5 +143,6 @@ export const useHome = (): Return => {
     onPressArrow,
     onPressDay,
     onPressCategory,
+    handleHideToday,
   };
 };

@@ -49,6 +49,7 @@ declare interface loginData {
   mem_tel: string;
   menu_buse_cart: string;
   menu_buse_point: string;
+  menu_buse_rank: string;
   mobile_first_login_date: string;
   mobile_first_login_time: string;
   parent_seq: string;
@@ -64,6 +65,7 @@ declare interface loginData {
   last_use_period_end: string;
   result_class_month_round: number;
   next_period_date: string;
+  grade_month_check: string;
 }
 
 declare interface subscribeInfoData {
@@ -349,4 +351,36 @@ declare interface schedule {
   status: '진행중' | '완료' | '';
   test_type: string;
   wordtest_is: '없음' | '있음';
+}
+
+declare interface rank {
+  seq_num: string;
+  rank_div: string;
+  is_all_rank: string;
+  rank_year: string;
+  rank_month: string;
+  rank_day: string;
+  reg_datetime: string;
+  rank_type: string;
+  rank: number;
+  mem_id: string;
+  mem_name: string;
+  shop_code: string;
+  shop_name: string;
+  item_code: string;
+  item_name: string;
+  total_word_test_grade: string;
+  sum_book_cbc_total: string;
+  rft_point: string;
+  total_per: string;
+  is_rank: string;
+  my_rank_type: string;
+  my_rank_num: string;
+  prev_rank_cnt: string;
+}
+
+declare interface rankMonthList {
+  seq_num: string;
+  rank_year: string;
+  rank_month: string;
 }

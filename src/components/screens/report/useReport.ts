@@ -118,8 +118,11 @@ export const useReport = (): Return => {
     const nowMonth = new Date().getMonth() + 1;
     const nowYear = new Date().getFullYear();
 
+    const gradeYear = Number(member.grade_month_check.split('-')[0]);
+    const gradeMonth = Number(member.grade_month_check.split('-')[1]);
+
     getDropDownList();
-    getReport(nowYear.toString(), nowMonth.toString());
+    getReport(gradeYear.toString(), gradeMonth.toString());
   }, []);
 
   const getDropDownList = () => {
@@ -129,28 +132,26 @@ export const useReport = (): Return => {
     const joinMonth = Number(member.class_start_date.split('-')[1]);
     const nowMonth = new Date().getMonth() + 1;
 
-    const dropDownList: dropDownItem[] = [];
+    const gradeYear = Number(member.grade_month_check.split('-')[0]);
+    const gradeMonth = Number(member.grade_month_check.split('-')[1]);
 
-    if (nowYear === joinYear) {
-      for (let i = joinMonth; i <= nowMonth; i++) {
-        dropDownList.push({value: `${joinYear}년 ${i}월 성적표`, label: `${joinYear}년 ${i}월 성적표`});
-      }
-    } else {
-      for (let i = joinMonth; i <= 12; i++) {
-        dropDownList.push({value: `${joinYear}년 ${i}월 성적표`, label: `${joinYear}년 ${i}월 성적표`});
-      }
+    const dropDownList = [];
 
-      for (let i = 1; i < nowYear - joinYear; i++) {
-        for (let j = 1; j <= 12; j++) {
-          dropDownList.push({value: `${joinYear + i}년 ${j}월 성적표`, label: `${joinYear + i}년 ${j}월 성적표`});
-        }
-      }
+    // joinYear-joinMonth에서 gradeYear-gradeMonth까지 리스트 추가
+    let year = joinYear;
+    let month = joinMonth;
 
-      for (let j = 1; j <= nowMonth; j++) {
-        dropDownList.push({value: `${nowYear}년 ${j}월 성적표`, label: `${nowYear}년 ${j}월 성적표`});
+    while (year < gradeYear || (year === gradeYear && month <= gradeMonth)) {
+      dropDownList.push({value: `${year}년 ${month}월 성적표`, label: `${year}년 ${month}월 성적표`});
+      console.log(`${year}년 ${month}월 성적표`);
+      if (month === 12) {
+        year++;
+        month = 1;
+      } else {
+        month++;
       }
     }
-
+    console.log(dropDownList);
     setDropDownMonthList(dropDownList);
   };
 

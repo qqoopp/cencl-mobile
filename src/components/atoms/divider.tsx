@@ -10,13 +10,7 @@ interface Props {
   bg?: ColorValue;
 }
 
-const Divider = ({
-  w = metrics.screenWidth,
-  h = 8,
-  mt = 0,
-  mb = 0,
-  bg = color.gray,
-}: Props) => {
+const Divider = ({w = metrics.screenWidth, h = 8, mt = 0, mb = 0, bg = color.gray}: Props) => {
   return (
     <View
       style={{

@@ -1,3 +1,4 @@
+import {deviceDB} from '@/utils/deviceDB';
 import { atom } from 'jotai';
 
 export const initialUserStates: {

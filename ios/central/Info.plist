@@ -81,11 +81,11 @@
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string>This app will use your location to show cool stuffs near you.</string>
 		<key>NSMicrophoneUsageDescription</key>
-		<string>Need microphone access for uploading videos</string>
-		<key>NSSpeechRecognitionUsageDescription</key>
-		<string>Need SpeechRecognition access for uploading videos</string>
+		<string>읽기 유창성 연습을 위해서 마이크 권한을 허용해주세요.</string>
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>Need Library access for uploading Images</string>
+		<key>NSSpeechRecognitionUsageDescription</key>
+		<string>읽기 유창성 연습을 위해서 녹음 권한을 허용해주세요.</string>
 		<key>UIAppFonts</key>
 		<array>
 			<string>fonts/NotoSansKR-Black.otf</string>
@@ -117,7 +117,7 @@
 		<string>LaunchScreen</string>
 		<key>UIRequiredDeviceCapabilities</key>
 		<array>
-			<string>arm64</string>
+			<string>armv7</string>
 		</array>
 		<key>UIRequiresFullScreen</key>
 		<true />

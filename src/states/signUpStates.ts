@@ -1,5 +1,5 @@
-import { atom } from 'jotai';
-import type { signUpParams } from '@/api/user';
+import {signUpParams} from '@/api/user';
+import {atom} from 'jotai';
 
 export const initialSignUpState: signUpParams = {
   mem_id: '',

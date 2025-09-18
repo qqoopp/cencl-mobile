@@ -63,6 +63,11 @@ const Iap = () => {
                 월 12,900원
               </NotoText>
             </View>
+            <View style={{borderBottomWidth: 1, borderColor: color.white, marginBottom: 24}}>
+              <NotoText fs={ftSizes.xxs} fw="Bold" ftColor={color.white} style={{textAlign: 'center'}}>
+                구독 중인 회원님만 본 서비스(App)를 이용할 수 있습니다.
+              </NotoText>
+            </View>
           </Col>
           <Image
             style={{width: metrics.singleWidth, height: metrics.singleWidth * 0.79, marginBottom: 20}}

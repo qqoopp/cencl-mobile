@@ -1,3 +1,4 @@
+import {modalType} from '@/types/common';
 import { atom } from 'jotai';
 
 export const initialSelectBookStates: {

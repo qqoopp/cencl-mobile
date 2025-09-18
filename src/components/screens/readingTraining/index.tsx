@@ -28,6 +28,7 @@ const ReadingTraining = ({
   },
 }: Props) => {
   const {
+    chkReadingIndex,
     nowReadingIndex,
     sentences,
     indexOfWords,
@@ -101,14 +102,16 @@ const ReadingTraining = ({
                   style={{marginBottom: 15}}
                   onPress={() => onPressSentence(index)}>
                   {rftMode === 'reading' && (
-                    <Row style={{alignItems: 'flex-start'}}>
-                      <NotoText ftColor={nowReadingIndex === index ? color.main : color.black} fs={ftSizes.m}>
+                    <Row key={sentence + index} style={{alignItems: 'flex-start'}}>
+                      <NotoText
+                        ftColor={nowReadingIndex === index ? color.main : chkReadingIndex.includes(index) ? color.dark_gray : color.black}
+                        fs={ftSizes.m}>
                         {sentence}
                       </NotoText>
                     </Row>
                   )}
                   {rftMode === 'listening' && (
-                    <Row style={{alignItems: 'flex-start'}}>
+                    <Row key={sentence + index} style={{alignItems: 'flex-start'}}>
                       <VIcon size={20} type="Entypo" name="controller-play" color="#F2F2F2" />
                       <NotoText ml={10} ftColor={ttsIndex === index ? color.main : color.black} fs={ftSizes.m}>
                         {sentence}
@@ -116,7 +119,7 @@ const ReadingTraining = ({
                     </Row>
                   )}
                   {rftMode === 'recording' && (
-                    <Row style={{alignItems: 'flex-start'}}>
+                    <Row key={sentence + index} style={{alignItems: 'flex-start'}}>
                       <NotoText ftColor={color.black} fs={ftSizes.m}>
                         {sentence}
                       </NotoText>
@@ -135,15 +138,16 @@ const ReadingTraining = ({
                 <NotoText fs={ftSizes.l}>
                   {sentences[nowReadingIndex]?.split(' ').map((word, index) => {
                     return (
-                      <React.Fragment key={word + index}>
+                      <>
                         <NotoText
                           style={{textDecorationLine: nonPassWordIndexList.includes(index) ? 'underline' : 'none', textDecorationStyle: 'dashed'}}
                           ftColor={index < indexOfWords ? color.main : color.black}
+                          key={'nowReadingWord' + word + index}
                           fs={ftSizes.l}>
                           {word}
                         </NotoText>
                         <NotoText> </NotoText>
-                      </React.Fragment>
+                      </>
                     );
                   })}
                 </NotoText>
@@ -151,14 +155,14 @@ const ReadingTraining = ({
                 <Row style={{flexWrap: 'wrap'}}>
                   {sentences[nowReadingIndex]?.split(' ').map((word, index) => {
                     return (
-                      <Row key={word + index}>
+                      <Row>
                         <View
                           style={{
                             borderBottomColor: nonPassWordIndexList.includes(index) ? 'red' : 'transparent',
                             borderBottomWidth: 1,
                             borderStyle: 'dashed',
                           }}>
-                          <NotoText ftColor={index < indexOfWords ? color.main : color.black} fs={ftSizes.l}>
+                          <NotoText ftColor={index < indexOfWords ? color.main : color.black} key={'nowReadingWord' + word + index} fs={ftSizes.l}>
                             {word}
                           </NotoText>
                         </View>

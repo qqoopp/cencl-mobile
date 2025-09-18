@@ -9,14 +9,13 @@ import {color, ftSizes} from '@/theme/theme';
 import {StackScreenProps} from '@react-navigation/stack';
 import {RootStackParams} from '@/navigations/rootStack';
 import Divider from '@/components/atoms/divider';
-import {Image, View} from 'react-native';
+import {View} from 'react-native';
 import NotchView from '@/components/blocks/view/notchView';
 import LottieView from 'lottie-react-native';
 import styled from 'styled-components/native';
 import {StyledTheme} from '@/../type';
 import {playSoundEffect} from '@/utils/playSoundEffect';
 import {goBack} from '@/utils/rootNavigations';
-import freeAnimation from '../../../assets/free.json';
 
 type Props = StackScreenProps<RootStackParams, 'testResultBoard'>;
 
@@ -33,7 +32,7 @@ const resultTexts = ['Well done', 'Good', 'Very good', 'Fantastic', 'Excellent~!
 
 const TestResultBoard = ({
   route: {
-    params: {seconds, score, type, rft},
+    params: {score, seconds, type},
   },
 }: Props) => {
   const [resultText, setResultText] = useState('');
@@ -41,7 +40,9 @@ const TestResultBoard = ({
   useEffect(() => {
     playSoundEffect();
 
-    if (type === 'rft') {
+    if (score === '-') {
+      setResultText(resultTexts[1]);
+    } else if (type === 'rft') {
       getTextFromScore(Number(score));
     } else {
       setResultText(resultTexts[4]);
@@ -64,8 +65,7 @@ const TestResultBoard = ({
 
   return (
     <ScreenBg style={styles.screen}>
-      <LottieView style={styles.animation} source={freeAnimation} autoPlay loop />
-      {rft?.book_img_path && <Image source={{uri: rft.book_img_path}} style={{width: 100, height: 150, alignSelf: 'center'}} resizeMode="contain" />}
+      <LottieView style={styles.animation} source={require('../../../assets/free.json')} autoPlay loop />
       <JalnanText>{resultText}</JalnanText>
       <ResultBox type={type}>
         <Col>

@@ -1,5 +1,4 @@
-import { atom } from 'jotai';
-import type { loginData } from '@/types/common';
+import {atom} from 'jotai';
 
 export const initialMemberDate: loginData = {
   class_division: '',
@@ -28,6 +27,7 @@ export const initialMemberDate: loginData = {
   mem_tel: '',
   menu_buse_cart: '',
   menu_buse_point: '',
+  menu_buse_rank: '',
   mobile_first_login_date: '',
   mobile_first_login_time: '',
   parent_seq: '',
@@ -41,6 +41,7 @@ export const initialMemberDate: loginData = {
   withdraw_date: '',
   result_class_month_round: 0,
   next_period_date: '',
+  grade_month_check: '',
 };
 
 // Jotai에서는 key 필요 없음

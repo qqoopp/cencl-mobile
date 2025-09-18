@@ -3,8 +3,7 @@ import {Platform, PermissionsAndroid, Alert, BackHandler} from 'react-native';
 import Tts from 'react-native-tts';
 import stringSimilarity from 'string-similarity';
 import Voice, {SpeechErrorEvent, SpeechResultsEvent} from '@react-native-voice/voice';
-import AudioRecorderPlayer,
-{
+import AudioRecorderPlayer, {
   AVEncoderAudioQualityIOSType,
   AVEncodingOption,
   AVModeIOSOption,
@@ -95,13 +94,30 @@ let nowSentenceMaxPoint = 0;
 let nowSentencePointCount = 0;
 
 export const useReadingTraining = (rft: rft) => {
-
   useSoundMode();
 
   const member = useAtomValue(memberState);
 
   const nowReadingIndexRef = useRef(0);
   const [nowReadingIndex, _setNowReadingIndex] = useState(0);
+  const [chkReadingIndex, _setChkReadingIndex] = useState<number[]>([]);
+
+  const setChkReadingIndex = (value: number) => {
+    _setChkReadingIndex(prev => {
+      // 이미 배열에 값이 있는지 확인
+      if (prev.includes(value)) {
+        // 값이 있으면 그대로 이전 배열 반환 (중복 방지)
+        return prev;
+      } else {
+        // 값이 없으면 새 배열에 추가
+
+        console.log('chkReadingIndex:', [...prev, value]);
+
+        return [...prev, value];
+      }
+    });
+  };
+
   const setNowReadingIndex = (index: number) => {
     nowReadingIndexRef.current = index;
     _setNowReadingIndex(() => index);
@@ -353,7 +369,7 @@ export const useReadingTraining = (rft: rft) => {
         const bestMatch = findBestMatch(userTxt, ngramList);
         console.log('bestMatch : ', bestMatch);
         if (bestMatch) {
-          if (bestMatch?.similarity >= 0.5) {
+          if (bestMatch?.similarity >= 0.3) {
             console.log('x통과한 단어들 : ', bestMatch.word);
 
             nowSentenceMaxPoint += bestMatch.similarity;
@@ -371,7 +387,6 @@ export const useReadingTraining = (rft: rft) => {
             for (let i = indexOfWordsRef.current; i < totalReadedIndex; i++) {
               _nonPassWordIndexList.push(i);
             }
-            console.log('_nonPassWordIndexList : ', _nonPassWordIndexList);
             setNonPassWrodIndexList(_nonPassWordIndexList);
             nowSentenceMaxPoint += bestMatch.similarity;
             nowSentencePointCount++;
@@ -412,7 +427,7 @@ export const useReadingTraining = (rft: rft) => {
 
         console.log('bestMatch : ', bestMatch);
 
-        if (bestMatch.rating >= 0.5) {
+        if (bestMatch.rating >= 0.3) {
           console.log('x통과한 단어들 : ', bestMatch.target);
           const totalReadedIndex = indexOfWordsRef.current + bestMatch.target.split(' ').length;
 
@@ -457,6 +472,7 @@ export const useReadingTraining = (rft: rft) => {
   };
 
   const checkNowPosition = async () => {
+    // setChkReadingIndex(nowReadingIndexRef.current); //test
     // 지금 어절이 마지막 어절인지 체크
     if (indexOfWordsRef.current === sentencesRef.current[nowReadingIndexRef.current].split(' ').length) {
       if (isPassingReadingIndex === false) {
@@ -473,6 +489,9 @@ export const useReadingTraining = (rft: rft) => {
         setTimeout(() => startRecognizing(), sttDelaySeconds);
         setTimeout(() => {
           setNonPassWrodIndexList([]);
+          setChkReadingIndex(nowReadingIndexRef.current);
+          console.log('sentencesRef : ', sentencesRef.current.length);
+          console.log(' chkReadingIndex: ' + chkReadingIndex);
           setNowReadingIndex(nowReadingIndexRef.current + 1);
           setIndexOfWords(0);
           passedStt = '';
@@ -593,8 +612,10 @@ export const useReadingTraining = (rft: rft) => {
     Tts.stop();
     if (mode === 'recording') {
       Alert.alert(
-        '읽기 정확도 평가를 종료하고 다음 단계로 넘어가시겠습니까?',
         '',
+        chkReadingIndex.length + 3 >= sentencesRef.current.length
+          ? '읽기 정확도 평가를 종료하고 다음 단계로 넘어가시겠습니까?'
+          : '읽기 정확도 평가를 종료하고 다음 단계로 넘어가시겠습니까?\n\n문장을 모두 읽지 않으면 정확도 측정을 하실 수 없습니다.',
         [
           {
             text: '취소',
@@ -649,7 +670,7 @@ export const useReadingTraining = (rft: rft) => {
     try {
       setIsRecordFetching(true);
       recordUri = await onStopRecord();
-      const [score, readRate] = getRftResultPoint(pointsRef.current);
+      var [score, readRate] = getRftResultPoint(pointsRef.current);
       const totalSeconds = (Number(rft.rft_read_time) + studySeconds).toString();
       console.log('recordUri : ', recordUri);
 
@@ -658,27 +679,19 @@ export const useReadingTraining = (rft: rft) => {
         diary_seq_num: rft.diary_seq_num,
         read_rate: readRate,
         read_time: (Number(rft.rft_read_time) + studySeconds).toString(),
-        read_accuracy: score,
+        read_accuracy: chkReadingIndex.length + 3 >= sentencesRef.current.length ? score : '0',
         RecordFileUri: recordUri,
       });
+      score = chkReadingIndex.length + 3 >= sentencesRef.current.length ? score : '-';
       await RNFetchBlob.fs.unlink(recordUri);
-      replace('testResultBoard', {
-        score,
-        seconds: studySeconds,
-        type: rft.rft_text === '' ? 'recording' : 'rft',
-        rft,
-      });
+      replace('testResultBoard', {score, seconds: studySeconds, type: rft.rft_text === '' ? 'recording' : 'rft'});
       setIsRecordFetching(false);
     } catch (error) {
       await RNFetchBlob.fs.unlink(recordUri);
       SimpleToast.show('잠시 후 다시 시도해주세요.');
-      const [score, readRate] = getRftResultPoint(pointsRef.current);
-      replace('testResultBoard', {
-        score,
-        seconds: studySeconds,
-        type: rft.rft_text === '' ? 'recording' : 'rft',
-        rft,
-      });
+      var [score, readRate] = getRftResultPoint(pointsRef.current);
+      score = chkReadingIndex.length + 3 >= sentencesRef.current.length ? score : '-';
+      replace('testResultBoard', {score, seconds: studySeconds, type: rft.rft_text === '' ? 'recording' : 'rft'});
 
       setIsRecordFetching(false);
     }
@@ -700,6 +713,7 @@ export const useReadingTraining = (rft: rft) => {
   };
 
   return {
+    chkReadingIndex,
     nowReadingIndex,
     sentences,
     rftMode,

@@ -45,6 +45,9 @@ export type RootStackParams = {
   learningHistory: {
     category?: 'Reading' | 'Speaking' | 'Writing';
   };
+  rankHistory: {
+    category?: '단어' | '독서량' | 'RFT';
+  };
   readingSkillResults: undefined;
   mngtSubscribe: undefined;
   pointHistory: undefined;
@@ -57,7 +60,6 @@ export type RootStackParams = {
     score: string;
     seconds: string;
     type: 'voca' | 'rft' | 'recording';
-    rft?: rft;
   };
   readingTraining: {
     rft: rft;

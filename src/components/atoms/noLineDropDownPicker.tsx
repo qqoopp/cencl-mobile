@@ -4,12 +4,13 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 interface Props {
   itemList: {label: string; value: string}[];
+  bgColor?: string; // bgColor를 옵셔널하게 변경
   onChangeValue: (value: string) => void;
 }
 
 const dropdownWidth = 210;
 
-const NoLineDropDownPicker = ({itemList, onChangeValue}: Props) => {
+const NoLineDropDownPicker = ({itemList, onChangeValue, bgColor}: Props) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
   const [items, setItems] = useState(itemList);
@@ -29,7 +30,7 @@ const NoLineDropDownPicker = ({itemList, onChangeValue}: Props) => {
 
   return (
     <DropDownPicker
-      style={{width: dropdownWidth, borderWidth: 0, zIndex: 100}}
+      style={{width: dropdownWidth, borderWidth: 0, zIndex: 100, backgroundColor: bgColor || 'transparent'}}
       containerStyle={{width: dropdownWidth, borderWidth: 0, zIndex: 100}}
       autoScroll
       onSelectItem={onSelectItem}
@@ -44,7 +45,13 @@ const NoLineDropDownPicker = ({itemList, onChangeValue}: Props) => {
       //     nestedScrollEnabled: true,
       //   }}
       dropDownContainerStyle={{
+        width: '100%',
         borderWidth: 0,
+      }}
+      textStyle={{
+        width: '100%',
+        textAlign: 'center', // 텍스트 가운데 정렬
+        color: '#000', // 텍스트 색상 설정
       }}
     />
   );
